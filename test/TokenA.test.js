@@ -38,7 +38,7 @@ describe("TokenA", function () {
     it("Should allow faucet use after cooldown period", async function () {
         await tokenA.connect(user).faucet();
 
-        // Fast forward time
+        
         await ethers.provider.send("evm_increaseTime", [15]);
         await ethers.provider.send("evm_mine", []);
 

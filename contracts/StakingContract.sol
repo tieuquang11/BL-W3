@@ -98,13 +98,13 @@ contract StakingContract is Ownable {
 
         uint256 reward = calculateReward(msg.sender);
         
-        // Use SafeMath for addition to prevent overflow
+        
         userStake.pendingRewards = userStake.pendingRewards + reward;
         userStake.lastClaimTime = block.timestamp;
 
         require(tokenA.balanceOf(address(this)) >= amount, "Insufficient contract balance");
 
-        // Use SafeMath for subtraction to prevent underflow
+       
         unchecked {
             userStake.amount -= amount;
             totalStaked -= amount;
@@ -138,7 +138,7 @@ contract StakingContract is Ownable {
         uint256 timeElapsed = block.timestamp - userStake.lastClaimTime;
         uint256 effectiveAPR = userStake.apr + (userStake.nftCount * NFT_APR_BOOST);
         
-        // Use SafeMath for multiplication and division to prevent overflow
+        
         uint256 reward = (userStake.amount * effectiveAPR * timeElapsed) / (365 days * 10000);
         
         return reward;
